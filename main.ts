@@ -169,8 +169,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (spr
     numberOfServers()
 })
 function queueStyle () {
-    if (controller.A.isPressed()) {
-        server2 = sprites.create(img`
+    server2 = sprites.create(img`
 . . . f f f c c c . . . . . 
 . f f 5 5 5 5 5 5 f f . . . 
 . f 5 5 5 5 5 5 5 5 5 f . . 
@@ -188,10 +187,12 @@ f f f 4 4 c b c b 5 5 5 b f
 . f f 3 b 3 b 3 b f f . . . 
 . . . f f b b f f . . . . . 
 `, SpriteKind.server)
-        server2.setPosition(120, 40)
-        queueBoolean = 2
-    }
+    server2.setPosition(120, 40)
+    queueBoolean = 2
 }
+scene.onHitWall(SpriteKind.customer, function (sprite) {
+    tiles.setWallAt(tiles.getTileLocation(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), true)
+})
 function numberOfServers () {
     if (server_list[2].image == img`
 . . . f f f c c c . . . . . 
@@ -214,7 +215,6 @@ f f f 4 4 c b c b 5 5 5 b f
     	
     }
 }
-// don't know if these work
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
     queueStyle()
 })
@@ -281,8 +281,7 @@ f f f 4 4 c b c b 5 5 5 b f
     server_list[index].setPosition(120, 15 + index * 25)
 }
 let index = 0
-// not random
-game.onUpdateInterval(Math.randomRange(500, 2000), function () {
+game.onUpdateInterval(2000, function () {
     customer_list.insertAt(index, sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -303,5 +302,4 @@ c b d d d d d 5 5 5 5 5 5 5 b .
 `, SpriteKind.customer))
     customer_list[index].setPosition(5, 15)
     customer_list[index].setVelocity(50, 0)
-    index += 1
 })
