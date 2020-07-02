@@ -159,16 +159,19 @@ f c e 1 e e e e e e e e e e e e
 f c e 1 e e e e e e e e e e e e 
 `
 }
-function numberOfQueues () {
-	
-}
+// number of queues
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonPink, function (sprite, location) {
-    numberOfServers()
+	
 })
+// number of servers
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
-    numberOfServers()
+    server_list[2].setFlag(SpriteFlag.Invisible, true)
 })
-function queueStyle () {
+scene.onHitWall(SpriteKind.customer, function (sprite) {
+    tiles.setWallAt(tiles.getTileLocation(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), true)
+})
+// queue style
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
     server2 = sprites.create(img`
 . . . f f f c c c . . . . . 
 . f f 5 5 5 5 5 5 f f . . . 
@@ -189,34 +192,6 @@ f f f 4 4 c b c b 5 5 5 b f
 `, SpriteKind.server)
     server2.setPosition(120, 40)
     queueBoolean = 2
-}
-scene.onHitWall(SpriteKind.customer, function (sprite) {
-    tiles.setWallAt(tiles.getTileLocation(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), true)
-})
-function numberOfServers () {
-    if (server_list[2].image == img`
-. . . f f f c c c . . . . . 
-. f f 5 5 5 5 5 5 f f . . . 
-. f 5 5 5 5 5 5 5 5 5 f . . 
-f 5 5 5 5 5 5 5 5 5 5 5 c . 
-f 5 5 b d 5 5 5 5 5 5 5 c . 
-f 5 d 4 4 b 5 5 5 5 5 5 5 f 
-f 5 b 4 4 4 c c 5 5 5 5 5 f 
-f f f 4 4 c b c b 5 5 5 b f 
-. f f d d c 1 e b b b b b c 
-. . f d d d d 4 f b b b b c 
-. . f 4 4 4 e e e 4 b b c . 
-. . f 9 9 9 e d d 4 f f . . 
-. . f 9 9 9 e d d e f . . . 
-. f 3 3 b 3 b e e b f . . . 
-. f f 3 b 3 b 3 b f f . . . 
-. . . f f b b f f . . . . . 
-`) {
-    	
-    }
-}
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
-    queueStyle()
 })
 let queueBoolean = 0
 let server2: Sprite = null
