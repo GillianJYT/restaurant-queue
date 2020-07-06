@@ -158,20 +158,349 @@ f c e 1 e e e e e e e e e e e e
 f c e 1 e e e e e e e e e e e e 
 f c e 1 e e e e e e e e e e e e 
 `
+    //% blockIdentity=images._tile
+    export const tile10 = img`
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+`
+    //% blockIdentity=images._tile
+    export const tile11 = img`
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+`
+    //% blockIdentity=images._tile
+    export const tile12 = img`
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+`
+    //% blockIdentity=images._tile
+    export const tile13 = img`
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+`
 }
 // number of queues
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonPink, function (sprite, location) {
-	
+    scene.setTile(3, img`
+b b b b b b b b b b b b b b b b 
+b c b b b b b b b b b b b b c b 
+b b b a 3 3 3 3 3 3 3 3 a b b b 
+b b a 3 3 3 3 3 3 3 3 3 3 a b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
+b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
+b b 3 1 3 3 3 3 3 3 3 3 1 3 b b 
+b b c 3 1 1 1 1 1 1 1 1 3 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
 })
 // number of servers
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
+    scene.setTile(6, img`
+b b b b b b b b b b b b b b b b 
+b c b b b b b b b b b b b b c b 
+b b b c 6 6 6 6 6 6 6 6 c b b b 
+b b c 6 6 6 6 6 6 6 6 6 6 c b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
+b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
+b b 6 9 6 6 6 6 6 6 6 6 9 6 b b 
+b b c 6 9 9 9 9 9 9 9 9 6 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
     server_list[2].setFlag(SpriteFlag.Invisible, true)
 })
-scene.onHitWall(SpriteKind.customer, function (sprite) {
-    tiles.setWallAt(tiles.getTileLocation(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), true)
+function background () {
+    scene.setTile(2, img`
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+b b b b b b b b b b b b b b b b 
+`, false)
+    scene.setTile(5, img`
+. . f f f f f f f f f f f f f f 
+. f c c c c c c c c c c c c c c 
+f c c e e e e e e e e e e e e e 
+f c e e e 1 1 1 1 1 1 1 1 1 1 1 
+f c e e 1 e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+`, true)
+    scene.setTile(7, img`
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+`, true)
+    scene.setTile(9, img`
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e 1 e e e e e e e e e e e e 
+f c e e 1 e e e e e e e e e e e 
+f c e e e 1 1 1 1 1 1 1 1 1 1 1 
+f c c e e e e e e e e e e e e e 
+. f c c c c c c c c c c c c c c 
+. . f f f f f f f f f f f f f f 
+`, true)
+    scene.setTile(10, img`
+f f f f f f f f f f f f f f . . 
+c c c c c c c c c c c c c c f . 
+e e e e e e e e e e e e e c c f 
+1 1 1 1 1 1 1 1 1 1 1 e e e c f 
+e e e e e e e e e e e 1 e e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+`, true)
+    scene.setTile(12, img`
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+`, true)
+    scene.setTile(13, img`
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e e 1 e c f 
+e e e e e e e e e e e 1 e e c f 
+1 1 1 1 1 1 1 1 1 1 1 e e e c f 
+e e e e e e e e e e e e e c c f 
+c c c c c c c c c c c c c c f . 
+f f f f f f f f f f f f f f . . 
+`, true)
+    scene.setTile(3, img`
+b b b b b b b b b b b b b b b b 
+b c b a 3 3 3 3 3 3 3 3 a b c b 
+b b a 3 3 3 3 3 3 3 3 3 3 a b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
+b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
+b b 3 1 3 3 3 3 3 3 3 3 1 3 b b 
+b b 3 3 1 1 1 1 1 1 1 1 3 3 b b 
+b b c 3 3 3 3 3 3 3 3 3 3 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
+    scene.setTile(4, img`
+b b b b b b b b b b b b b b b b 
+b c b e 4 4 4 4 4 4 4 4 e b c b 
+b b e 4 4 4 4 4 4 4 4 4 4 e b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b d 4 4 4 4 4 4 4 4 4 4 d b b 
+b b d 4 4 4 4 4 4 4 4 4 4 d b b 
+b b 4 d 4 4 4 4 4 4 4 4 d 4 b b 
+b b 4 4 d d d d d d d d 4 4 b b 
+b b c 4 4 4 4 4 4 4 4 4 4 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
+    scene.setTile(6, img`
+b b b b b b b b b b b b b b b b 
+b c b c 6 6 6 6 6 6 6 6 c b c b 
+b b c 6 6 6 6 6 6 6 6 6 6 c b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
+b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
+b b 6 9 6 6 6 6 6 6 6 6 9 6 b b 
+b b 6 6 9 9 9 9 9 9 9 9 6 6 b b 
+b b c 6 6 6 6 6 6 6 6 6 6 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
+}
+scene.onHitTile(SpriteKind.customer, 0, function (sprite) {
+    scene.setTile(15, img`
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+b b b b b b b b b b b b b b b b 
+`, true)
+    scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), 15)
 })
 // queue style
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
+    scene.setTile(4, img`
+b b b b b b b b b b b b b b b b 
+b c b b b b b b b b b b b b c b 
+b b b e 4 4 4 4 4 4 4 4 e b b b 
+b b e 4 4 4 4 4 4 4 4 4 4 e b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b d 4 4 4 4 4 4 4 4 4 4 d b b 
+b b d 4 4 4 4 4 4 4 4 4 4 d b b 
+b b 4 d 4 4 4 4 4 4 4 4 d 4 b b 
+b b c 4 d d d d d d d d 4 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
     server2 = sprites.create(img`
 . . . f f f c c c . . . . . 
 . f f 5 5 5 5 5 5 f f . . . 
@@ -193,6 +522,8 @@ f f f 4 4 c b c b 5 5 5 b f
     server2.setPosition(120, 40)
     queueBoolean = 2
 })
+let index3 = 0
+let random = 0
 let queueBoolean = 0
 let server2: Sprite = null
 let server_list: Sprite[] = []
@@ -216,21 +547,17 @@ let player1 = sprites.create(img`
 `, SpriteKind.Player)
 player1.setPosition(142, 63)
 controller.moveSprite(player1)
-tiles.setTilemap(tiles.createTilemap(
-            hex`0a000800080808080801040808090808080808070608080a0808080808020508080b0808080808010408080808080808080706080808080808080802050808080808080808080808080808080808080808080808`,
-            img`
-. . . . . 2 2 . . . 
-. . . . . 2 2 . . . 
-. . . . . 2 2 . . . 
-. . . . . 2 2 . . . 
-. . . . . 2 2 . . . 
-. . . . . 2 2 . . . 
-. . . . . . . . . . 
-. . . . . . . . . . 
-`,
-            [myTiles.tile0,myTiles.tile2,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,sprites.dungeon.floorLight2,sprites.dungeon.buttonOrange,sprites.dungeon.buttonTeal,sprites.dungeon.buttonPink],
-            TileScale.Sixteen
-        ))
+scene.setTileMap(img`
+2 2 2 2 2 5 a 2 2 4 
+2 2 2 2 2 7 c 2 2 6 
+2 2 2 2 2 9 d 2 2 3 
+2 2 2 2 2 5 a 2 2 2 
+2 2 2 2 2 7 c 2 2 2 
+2 2 2 2 2 9 d 2 2 2 
+2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 
+`)
+background()
 scene.cameraFollowSprite(player1)
 let customer_list = sprites.allOfKind(SpriteKind.customer)
 server_list = sprites.allOfKind(SpriteKind.server)
@@ -255,9 +582,8 @@ f f f 4 4 c b c b 5 5 5 b f
 `, SpriteKind.server))
     server_list[index].setPosition(120, 15 + index * 25)
 }
-let index = 0
-game.onUpdateInterval(2000, function () {
-    customer_list.insertAt(index, sprites.create(img`
+for (let index2 = 0; index2 <= 4; index2++) {
+    customer_list.insertAt(index2, sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . b 5 5 b . . . 
@@ -275,6 +601,15 @@ c b d d d d d 5 5 5 5 5 5 5 b .
 . . c b d d d d d 5 5 5 b b . . 
 . . . c c c c c c c c b b . . . 
 `, SpriteKind.customer))
-    customer_list[index].setPosition(5, 15)
-    customer_list[index].setVelocity(50, 0)
+    customer_list[index2].setPosition(5, 15)
+}
+forever(function () {
+    random = Math.randomRange(500, 2000)
+    pause(random)
+    customer_list[index3].setVelocity(50, 0)
+    if (index3 < 4) {
+        index3 += 1
+    } else {
+        index3 = 0
+    }
 })

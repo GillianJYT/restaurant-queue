@@ -1,7 +1,9 @@
 {
     "name": "Restaurant queue",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "color-coded-tilemap": "*",
+        "animation": "*"
     },
     "description": "",
     "files": [
