@@ -287,8 +287,6 @@ b b b b b b b b b b b b b b b b
 `, false)
 })
 // number of servers
-//
-// **cannot stand on button for too long**
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
     scene.setTile(6, img`
 b b b b b b b b b b b b b b b b 
@@ -310,12 +308,15 @@ b b b b b b b b b b b b b b b b
 `, false)
     if (isServerInvisible == 0) {
         isServerInvisible = 1
+        numberOfServers = 1
         server_list[2].setFlag(SpriteFlag.Invisible, true)
     } else if (isServerInvisible == 1) {
         isServerInvisible = 2
+        numberOfServers = 0
         server_list[1].setFlag(SpriteFlag.Invisible, true)
     } else {
         isServerInvisible = 0
+        numberOfServers = 2
         server_list[1].setFlag(SpriteFlag.Invisible, false)
         server_list[2].setFlag(SpriteFlag.Invisible, false)
     }
@@ -660,33 +661,13 @@ b b b c c c c c c c c c c b b b
 b c b b b b b b b b b b b b c b 
 b b b b b b b b b b b b b b b b 
 `, false)
-    server2 = sprites.create(img`
-. . . f f f c c c . . . . . 
-. f f 5 5 5 5 5 5 f f . . . 
-. f 5 5 5 5 5 5 5 5 5 f . . 
-f 5 5 5 5 5 5 5 5 5 5 5 c . 
-f 5 5 b d 5 5 5 5 5 5 5 c . 
-f 5 d 4 4 b 5 5 5 5 5 5 5 f 
-f 5 b 4 4 4 c c 5 5 5 5 5 f 
-f f f 4 4 c b c b 5 5 5 b f 
-. f f d d c 1 e b b b b b c 
-. . f d d d d 4 f b b b b c 
-. . f 4 4 4 e e e 4 b b c . 
-. . f 9 9 9 e d d 4 f f . . 
-. . f 9 9 9 e d d e f . . . 
-. f 3 3 b 3 b e e b f . . . 
-. f f 3 b 3 b 3 b f f . . . 
-. . . f f b b f f . . . . . 
-`, SpriteKind.server)
-    server2.setPosition(120, 40)
-    queueBoolean = 2
 })
 let index3 = 0
-let random = 0
-let queueBoolean = 0
-let server2: Sprite = null
+let randomTime = 0
 let isServerInvisible = 0
 let leaving = false
+let randomStart = 0
+let numberOfServers = 0
 let server_list: Sprite[] = []
 let player1 = sprites.create(img`
 . . . . . . f f f f . . . . . . 
@@ -711,8 +692,8 @@ controller.moveSprite(player1)
 scene.setTileMap(img`
 2 2 2 2 2 5 a 2 2 4 
 2 2 2 2 2 7 c 2 2 6 
-2 2 2 2 2 9 d 2 2 3 
-2 2 2 2 2 5 a 2 2 2 
+2 2 2 2 2 7 c 2 2 3 
+2 2 2 2 2 7 c 2 2 2 
 2 2 2 2 2 7 c 2 2 2 
 2 2 2 2 2 9 d 2 2 2 
 2 2 2 2 2 2 2 2 2 2 
@@ -722,7 +703,8 @@ background()
 scene.cameraFollowSprite(player1)
 let customer_list = sprites.allOfKind(SpriteKind.customer)
 server_list = sprites.allOfKind(SpriteKind.server)
-for (let index = 0; index <= 2; index++) {
+numberOfServers = 2
+for (let index = 0; index <= numberOfServers; index++) {
     server_list.insertAt(index, sprites.create(img`
 . . . f f f c c c . . . . . 
 . f f 5 5 5 5 5 5 f f . . . 
@@ -762,14 +744,21 @@ c b d d d d d 5 5 5 5 5 5 5 b .
 . . c b d d d d d 5 5 5 b b . . 
 . . . c c c c c c c c b b . . . 
 `, SpriteKind.customer))
-    customer_list[index2].setPosition(5, 15)
+    randomStart = Math.randomRange(0, numberOfServers)
+    if (randomStart == 0) {
+        customer_list[index2].setPosition(5, 15)
+    } else if (randomStart == 1) {
+        customer_list[index2].setPosition(5, 40)
+    } else {
+        customer_list[index2].setPosition(5, 65)
+    }
 }
 leaving = true
 isServerInvisible = 0
 forever(function () {
     if (leaving) {
-        random = Math.randomRange(500, 2000)
-        pause(random)
+        randomTime = Math.randomRange(500, 2000)
+        pause(randomTime)
         customer_list[index3].setVelocity(50, 0)
         // respawns customer after they leave
         if (customer_list[index3].x < 0) {
@@ -792,7 +781,14 @@ c b d d d d d 5 5 5 5 5 5 5 b .
 . . . c c c c c c c c b b . . . 
 `)
             customer_list[index3].setFlag(SpriteFlag.Ghost, false)
-            customer_list[index3].setPosition(5, 15)
+            randomStart = Math.randomRange(0, numberOfServers)
+            if (randomStart == 0) {
+                customer_list[index3].setPosition(5, 15)
+            } else if (randomStart == 1) {
+                customer_list[index3].setPosition(5, 40)
+            } else {
+                customer_list[index3].setPosition(5, 65)
+            }
         }
         if (index3 < 4) {
             index3 += 1
