@@ -234,7 +234,93 @@ f c e 1 e e e e e e e e e e e e
 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
 `
+    //% blockIdentity=images._tile
+    export const tile14 = img`
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+b b b b b b b b b b b b b b b 3 
+`
 }
+function resestButtons () {
+    scene.setTile(3, img`
+b b b b b b b b b b b b b b b b 
+b c b a 3 3 3 3 3 3 3 3 a b c b 
+b b a 3 3 3 3 3 3 3 3 3 3 a b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
+b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
+b b 3 1 3 3 3 3 3 3 3 3 1 3 b b 
+b b 3 3 1 1 1 1 1 1 1 1 3 3 b b 
+b b c 3 3 3 3 3 3 3 3 3 3 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
+    scene.setTile(4, img`
+b b b b b b b b b b b b b b b b 
+b c b e 4 4 4 4 4 4 4 4 e b c b 
+b b e 4 4 4 4 4 4 4 4 4 4 e b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
+b b d 4 4 4 4 4 4 4 4 4 4 d b b 
+b b d 4 4 4 4 4 4 4 4 4 4 d b b 
+b b 4 d 4 4 4 4 4 4 4 4 d 4 b b 
+b b 4 4 d d d d d d d d 4 4 b b 
+b b c 4 4 4 4 4 4 4 4 4 4 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
+    scene.setTile(6, img`
+b b b b b b b b b b b b b b b b 
+b c b c 6 6 6 6 6 6 6 6 c b c b 
+b b c 6 6 6 6 6 6 6 6 6 6 c b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
+b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
+b b 6 9 6 6 6 6 6 6 6 6 9 6 b b 
+b b 6 6 9 9 9 9 9 9 9 9 6 6 b b 
+b b c 6 6 6 6 6 6 6 6 6 6 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
+}
+// when customer arrives at the counter
+scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
+    scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), 15)
+    // need to pause for a few seconds
+    sprite.say("ordering...", 1000)
+    scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), 2)
+    sprite.setVelocity(0, 50)
+})
+scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
+    scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), 15)
+})
 // number of queues
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonPink, function (sprite, location) {
     scene.setTile(3, img`
@@ -279,6 +365,24 @@ b b b b b b b b b b b b b b b b
     server_list[2].setFlag(SpriteFlag.Invisible, true)
 })
 function background () {
+    scene.setTile(15, img`
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+b b b b b b b b b b b b b b b b 
+`, true)
     scene.setTile(2, img`
 d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
 1 d d d d d d d d d d d d d d b 
@@ -296,6 +400,43 @@ d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b
 1 d d d d d d d d d d d d d d b 
 1 d d d d d d d d d d d d d d b 
 b b b b b b b b b b b b b b b b 
+`, false)
+    // has a small pink dot to separate from regular tiles
+    scene.setTile(8, img`
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+b b b b b b b b b b b b b b b 3 
+`, false)
+    scene.setTile(14, img`
+c b d d d d d d d d d d d d d d 
+c b d d d d d d d d d d d d d d 
+c b c c b c c b c c b c c b c c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c d b c d b c d b c d b c d b c 
+c b c c b c c b c c b c c b c c 
+c b d d d d d d d d d d d d d d 
+c b d d d d d d d d d d d d d d 
 `, false)
     scene.setTile(5, img`
 . . f f f f f f f f f f f f f f 
@@ -460,26 +601,32 @@ b c b b b b b b b b b b b b c b
 b b b b b b b b b b b b b b b b 
 `, false)
 }
-scene.onHitTile(SpriteKind.customer, 0, function (sprite) {
-    scene.setTile(15, img`
-d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-1 d d d d d d d d d d d d d d b 
-b b b b b b b b b b b b b b b b 
-`, true)
-    scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.ceil(sprite.y / 16)), 15)
+// customer finishes ordering and walks out
+scene.onOverlapTile(SpriteKind.customer, myTiles.tile14, function (sprite, location) {
+    sprite.setVelocity(-50, 50)
+    sprite.setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . b 5 5 b . . . . . . . . . 
+. . . . b b b b b b . . . . . . 
+. . . b 5 5 5 5 5 b b . . . . . 
+. . b 5 5 5 5 5 5 5 b b b b b . 
+. . b 5 5 5 5 5 5 5 5 b 5 d b . 
+. . f 4 5 5 f 1 d 5 b 5 5 b . . 
+. . c 4 4 5 f f 1 b 5 5 d b . . 
+. b 4 4 4 4 b f d 5 5 5 b d b b 
+b 4 4 4 4 4 4 5 b 5 5 d c d d b 
+. b 5 5 5 5 5 5 5 b c c d d d c 
+. b 5 5 5 5 5 5 5 d d d d d b c 
+. b d 5 5 5 5 5 d d d d d d c . 
+. . b b 5 5 5 d d d d d b c . . 
+. . . b b c c c c c c c c . . . 
+`)
+    leaving = false
+})
+scene.onOverlapTile(SpriteKind.customer, sprites.dungeon.stairEast, function (sprite, location) {
+    leaving = true
+    sprite.setFlag(SpriteFlag.Ghost, true)
 })
 // queue style
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
@@ -526,6 +673,7 @@ let index3 = 0
 let random = 0
 let queueBoolean = 0
 let server2: Sprite = null
+let leaving = false
 let server_list: Sprite[] = []
 let player1 = sprites.create(img`
 . . . . . . f f f f . . . . . . 
@@ -555,7 +703,7 @@ scene.setTileMap(img`
 2 2 2 2 2 7 c 2 2 2 
 2 2 2 2 2 9 d 2 2 2 
 2 2 2 2 2 2 2 2 2 2 
-2 2 2 2 2 2 2 2 2 2 
+e 8 8 8 8 2 2 2 2 2 
 `)
 background()
 scene.cameraFollowSprite(player1)
@@ -603,13 +751,40 @@ c b d d d d d 5 5 5 5 5 5 5 b .
 `, SpriteKind.customer))
     customer_list[index2].setPosition(5, 15)
 }
+leaving = true
 forever(function () {
-    random = Math.randomRange(500, 2000)
-    pause(random)
-    customer_list[index3].setVelocity(50, 0)
-    if (index3 < 4) {
-        index3 += 1
-    } else {
-        index3 = 0
+    if (leaving) {
+        random = Math.randomRange(500, 2000)
+        pause(random)
+        customer_list[index3].setVelocity(50, 0)
+        // respawns customer after they leave
+        if (customer_list[index3].x < 0) {
+            customer_list[index3].setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . b 5 5 b . . . 
+. . . . . . b b b b b b . . . . 
+. . . . . b b 5 5 5 5 5 b . . . 
+. b b b b b 5 5 5 5 5 5 5 b . . 
+. b d 5 b 5 5 5 5 5 5 5 5 b . . 
+. . b 5 5 b 5 d 1 f 5 d 4 f . . 
+. . b d 5 5 b 1 f f 5 4 4 c . . 
+b b d b 5 5 5 d f b 4 4 4 4 b . 
+b d d c d 5 5 b 5 4 4 4 4 4 4 b 
+c d d d c c b 5 5 5 5 5 5 5 b . 
+c b d d d d d 5 5 5 5 5 5 5 b . 
+. c d d d d d d 5 5 5 5 5 d b . 
+. . c b d d d d d 5 5 5 b b . . 
+. . . c c c c c c c c b b . . . 
+`)
+            customer_list[index3].setFlag(SpriteFlag.Ghost, false)
+            customer_list[index3].setPosition(5, 15)
+        }
+        if (index3 < 4) {
+            index3 += 1
+        } else {
+            index3 = 0
+        }
     }
+    resestButtons()
 })
