@@ -3,7 +3,8 @@
     "dependencies": {
         "device": "*",
         "color-coded-tilemap": "*",
-        "animation": "*"
+        "animation": "*",
+        "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.0.5"
     },
     "description": "",
     "files": [
