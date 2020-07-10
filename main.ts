@@ -270,6 +270,10 @@ scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
         sprite.setVelocity(0, 0)
         scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16 + 1), Math.floor(sprite.y / 16)), 2)
     }
+    console.log(Math.floor(sprite.x / 16 - 1))
+    if (Math.floor(sprite.x / 16 - 1) == 2) {
+        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16 + 1), Math.floor(sprite.y / 16)), 2)
+    }
 })
 // number of queues
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonPink, function (sprite, location) {
@@ -329,18 +333,18 @@ b b b b b b b b b b b b b b b b
 })
 function background () {
     scene.setTile(15, img`
-c c c c c c c c c c c c 1 1 1 b 
-c c c c c c c c c c c c d d d b 
-1 c c c c c c c c d d d d d d b 
-c c c c c c c c c c c c d d d b 
-1 d d d d d 3 d 3 3 d d d d d b 
-1 d d d d d 3 3 3 3 d d d d d b 
-1 d d d d d 3 3 3 3 3 d d d d b 
-1 d d d d 3 3 3 3 3 3 d d d d b 
-1 d d d d 3 d 3 3 3 3 3 d d d b 
-1 d d d d 3 d d 3 d 3 3 d d d b 
-1 d d d d 3 d d 3 d d d d d d b 
-1 d d d d d d d 3 d d d d d d b 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
 1 d d d d d d d d d d d d d d b 
 1 d d d d d d d d d d d d d d b 
 1 d d d d d d d d d d d d d d b 
@@ -833,7 +837,6 @@ c b d d d d d 5 5 5 5 5 5 5 b .
             sprites.changeDataNumberBy(value, "timer", -1)
         } else {
             sprites.changeDataNumberBy(value, "timer", -1)
-            console.log(sprites.readDataNumber(value, "timer"))
         }
     }
     pause(1)
