@@ -785,6 +785,75 @@ let projectile = sprites.createProjectileFromSide(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, 50, 100)
+let bird = [img`
+. . . . . . . f f f f f . . . . 
+. . . . . . f d d 1 1 1 c . . . 
+. . . . . f d 1 f 1 1 1 1 f . . 
+. . . . . f 1 f f 1 f f 1 c . . 
+. . . . . f d f c 1 f f f f . . 
+. . . . . f 1 1 1 f f f f f f f 
+. . . . . . f 1 f f f f f f f . 
+f f f f . . f 1 1 1 1 1 c . . . 
+f 1 1 1 c c 1 1 e 1 1 e c . . . 
+f 1 1 f f f c 1 e 1 1 e 1 f . . 
+f 1 c f f f f 1 e e e e 1 1 f . 
+f 1 1 c 1 f f d 1 1 1 1 1 1 f . 
+f c 1 1 c c d 1 e 1 e 1 e 1 f . 
+. f 1 1 1 1 1 1 e 1 e 1 e 1 f . 
+. . f c 1 1 1 1 e e e e e c . . 
+. . . c c c c c c c c c c . . . 
+`, img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f f f f . . . . 
+. . . . . . f 1 1 1 1 1 c . . . 
+. . . . . . f 1 1 1 1 1 1 c . . 
+. c c c c c c 1 d 1 1 1 1 c . . 
+. c f f c 1 1 d 1 f 1 1 1 f . . 
+. . c f f c d 1 f f 1 f f d . . 
+. . c f f f c d f c f f f f c . 
+c d c f f f f 1 e f f f f f f c 
+c 1 1 c f f f d e e e e 1 1 c . 
+f 1 1 1 c d d 1 1 1 1 1 1 1 c . 
+f c 1 1 1 1 1 1 e 1 e 1 e 1 c . 
+. f 1 1 1 1 1 1 e 1 e 1 e 1 c . 
+. . f c 1 1 1 1 e e e e e c . . 
+. . . c c c c c c c c c c . . . 
+`, img`
+. . . . f f f f f . . . . . . . 
+. . . c 1 1 1 d d f . . . . . . 
+. . f 1 1 1 1 f 1 d f . . . . . 
+. . c 1 f f 1 f f 1 f . . . . . 
+. . f f f f 1 c f d f . . . . . 
+f f f f f f f 1 1 1 f . . . . . 
+. f f f f f f f 1 f . . . . . . 
+. . . c 1 1 1 1 1 f . . f f f f 
+. . . c e 1 1 e 1 1 c c 1 1 1 f 
+. . f 1 e 1 1 e 1 c f f f 1 1 f 
+. f 1 1 e e e e 1 f f f f c 1 f 
+. f 1 1 1 1 1 1 d f f 1 c 1 1 f 
+. f 1 e 1 e 1 e 1 d c c 1 1 c f 
+. f 1 e 1 e 1 e 1 1 1 1 1 1 f . 
+. . c e e e e e 1 1 1 1 c f . . 
+. . . c c c c c c c c c c . . . 
+`, img`
+. . . . . . . c c c c c . . . . 
+. . . . . . c d 1 1 1 1 c . . . 
+. . . . . c d 1 f 1 1 1 f . . . 
+. . . . . c 1 f f 1 f f c . . . 
+. . . . . c d f c f f f f c . . 
+. . . . . c c d 1 f f f f f f c 
+. . . . . . c 1 1 1 1 1 c . . . 
+. . . c c c 1 1 1 1 1 1 c . . . 
+. . c 1 1 1 1 1 e 1 1 e 1 f . . 
+. c 1 1 1 1 1 1 e 1 1 e 1 1 f . 
+c 1 1 1 c c c c e e e e 1 1 f . 
+f 1 1 c f f f d c 1 1 1 1 1 f . 
+f c c f f f d c e 1 e 1 e 1 f . 
+. c f f f f c 1 e 1 e 1 e 1 f . 
+c c f c c c 1 1 e e e e e c . . 
+. . . c c c c c c c c c c . . . 
+`]
 for (let value of customer_list) {
     sprites.setDataNumber(value, "timer", -1)
 }
@@ -830,13 +899,13 @@ c b d d d d d 5 5 5 5 5 5 5 b .
             index3 = 0
         }
     }
-    for (let value of customer_list) {
-        if (sprites.readDataNumber(value, "timer") == 0) {
-            value.setVelocity(0, 50)
-            scene.setTileAt(scene.getTile(Math.floor(value.x / 16), Math.floor(value.y / 16)), 2)
-            sprites.changeDataNumberBy(value, "timer", -1)
+    for (let value2 of customer_list) {
+        if (sprites.readDataNumber(value2, "timer") == 0) {
+            value2.setVelocity(0, 50)
+            scene.setTileAt(scene.getTile(Math.floor(value2.x / 16), Math.floor(value2.y / 16)), 2)
+            sprites.changeDataNumberBy(value2, "timer", -1)
         } else {
-            sprites.changeDataNumberBy(value, "timer", -1)
+            sprites.changeDataNumberBy(value2, "timer", -1)
         }
     }
     pause(1)
