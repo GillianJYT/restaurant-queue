@@ -254,83 +254,6 @@ d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b
 b b b b b b b b b b b b b b b 3 
 `
 }
-// when customer arrives at the counter
-scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
-    scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.floor(sprite.y / 16)), 15)
-    // need to pause for a few seconds
-    sprite.say("ordering...", 1000)
-    sprite.setVelocity(0, 0)
-    if (sprites.readDataNumber(sprite, "timer") <= 0) {
-        sprites.setDataNumber(sprite, "timer", 5)
-    }
-})
-scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
-    if (sprite.vx != 0) {
-        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.floor(sprite.y / 16)), 15)
-        sprite.setVelocity(0, 0)
-        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16 + 1), Math.floor(sprite.y / 16)), 2)
-    }
-    console.log(Math.floor(sprite.x / 16 - 1))
-    if (Math.floor(sprite.x / 16 - 1) == 2) {
-        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16 + 1), Math.floor(sprite.y / 16)), 2)
-    }
-})
-// number of queues
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonPink, function (sprite, location) {
-    scene.setTile(3, img`
-b b b b b b b b b b b b b b b b 
-b c b b b b b b b b b b b b c b 
-b b b a 3 3 3 3 3 3 3 3 a b b b 
-b b a 3 3 3 3 3 3 3 3 3 3 a b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
-b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
-b b 3 1 3 3 3 3 3 3 3 3 1 3 b b 
-b b c 3 1 1 1 1 1 1 1 1 3 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
-})
-// number of servers
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
-    scene.setTile(6, img`
-b b b b b b b b b b b b b b b b 
-b c b b b b b b b b b b b b c b 
-b b b c 6 6 6 6 6 6 6 6 c b b b 
-b b c 6 6 6 6 6 6 6 6 6 6 c b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
-b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
-b b 6 9 6 6 6 6 6 6 6 6 9 6 b b 
-b b c 6 9 9 9 9 9 9 9 9 6 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
-    if (isServerInvisible == 0) {
-        isServerInvisible = 1
-        numberOfServers = 1
-        server_list[2].setFlag(SpriteFlag.Invisible, true)
-    } else if (isServerInvisible == 1) {
-        isServerInvisible = 2
-        numberOfServers = 0
-        server_list[1].setFlag(SpriteFlag.Invisible, true)
-    } else {
-        isServerInvisible = 0
-        numberOfServers = 2
-        server_list[1].setFlag(SpriteFlag.Invisible, false)
-        server_list[2].setFlag(SpriteFlag.Invisible, false)
-    }
-})
 function background () {
     scene.setTile(15, img`
 d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
@@ -568,33 +491,6 @@ b c b b b b b b b b b b b b c b
 b b b b b b b b b b b b b b b b 
 `, false)
 }
-// customer finishes ordering and walks out
-scene.onOverlapTile(SpriteKind.customer, myTiles.tile14, function (sprite, location) {
-    sprite.setVelocity(-50, 50)
-    sprite.setImage(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . b 5 5 b . . . . . . . . . 
-. . . . b b b b b b . . . . . . 
-. . . b 5 5 5 5 5 b b . . . . . 
-. . b 5 5 5 5 5 5 5 b b b b b . 
-. . b 5 5 5 5 5 5 5 5 b 5 d b . 
-. . f 4 5 5 f 1 d 5 b 5 5 b . . 
-. . c 4 4 5 f f 1 b 5 5 d b . . 
-. b 4 4 4 4 b f d 5 5 5 b d b b 
-b 4 4 4 4 4 4 5 b 5 5 d c d d b 
-. b 5 5 5 5 5 5 5 b c c d d d c 
-. b 5 5 5 5 5 5 5 d d d d d b c 
-. b d 5 5 5 5 5 d d d d d d c . 
-. . b b 5 5 5 d d d d d b c . . 
-. . . b b c c c c c c c c . . . 
-`)
-    leaving = false
-})
-scene.onOverlapTile(SpriteKind.customer, sprites.dungeon.stairEast, function (sprite, location) {
-    leaving = true
-    sprite.setFlag(SpriteFlag.Ghost, true)
-})
 function resestButtons () {
     scene.setTile(3, img`
 b b b b b b b b b b b b b b b b 
@@ -651,6 +547,93 @@ b c b b b b b b b b b b b b c b
 b b b b b b b b b b b b b b b b 
 `, false)
 }
+// when customer arrives at the counter
+scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
+    scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.floor(sprite.y / 16)), 15)
+    // need to pause for a few seconds
+    sprite.say("ordering...", 1000)
+    sprite.setVelocity(0, 0)
+    if (sprites.readDataNumber(sprite, "timer") <= 0) {
+        sprites.setDataNumber(sprite, "timer", 5)
+    }
+})
+scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
+    if (sprite.vx != 0) {
+        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.floor(sprite.y / 16)), 15)
+        sprite.setVelocity(0, 0)
+        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16 + 1), Math.floor(sprite.y / 16)), 2)
+    }
+    console.log(Math.floor(sprite.x / 16 - 1))
+    if (Math.floor(sprite.x / 16 - 1) == 2) {
+        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16 + 1), Math.floor(sprite.y / 16)), 2)
+    }
+})
+// number of queues
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonPink, function (sprite, location) {
+    scene.setTile(3, img`
+b b b b b b b b b b b b b b b b 
+b c b b b b b b b b b b b b c b 
+b b b a 3 3 3 3 3 3 3 3 a b b b 
+b b a 3 3 3 3 3 3 3 3 3 3 a b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
+b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
+b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
+b b 3 1 3 3 3 3 3 3 3 3 1 3 b b 
+b b c 3 1 1 1 1 1 1 1 1 3 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
+})
+// number of servers
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
+    scene.setTile(6, img`
+b b b b b b b b b b b b b b b b 
+b c b b b b b b b b b b b b c b 
+b b b c 6 6 6 6 6 6 6 6 c b b b 
+b b c 6 6 6 6 6 6 6 6 6 6 c b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
+b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
+b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
+b b 6 9 6 6 6 6 6 6 6 6 9 6 b b 
+b b c 6 9 9 9 9 9 9 9 9 6 c b b 
+b b b c c c c c c c c c c b b b 
+b c b b b b b b b b b b b b c b 
+b b b b b b b b b b b b b b b b 
+`, false)
+    if (isServerInvisible == 0) {
+        isServerInvisible = 1
+        numberOfServers = 1
+        server_list[2].setFlag(SpriteFlag.Invisible, true)
+    } else if (isServerInvisible == 1) {
+        isServerInvisible = 2
+        numberOfServers = 0
+        server_list[1].setFlag(SpriteFlag.Invisible, true)
+    } else {
+        isServerInvisible = 0
+        numberOfServers = 2
+        server_list[1].setFlag(SpriteFlag.Invisible, false)
+        server_list[2].setFlag(SpriteFlag.Invisible, false)
+    }
+})
+// customer finishes ordering and walks out
+scene.onOverlapTile(SpriteKind.customer, myTiles.tile14, function (sprite, location) {
+    sprite.setVelocity(-50, 50)
+    sprite.setImage(backwardBirdImage)
+    leaving = false
+})
+scene.onOverlapTile(SpriteKind.customer, sprites.dungeon.stairEast, function (sprite, location) {
+    leaving = true
+    sprite.setFlag(SpriteFlag.Ghost, true)
+})
 // queue style
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
     scene.setTile(4, img`
@@ -677,6 +660,7 @@ let randomTime = 0
 let isServerInvisible = 0
 let leaving = false
 let randomStart = 0
+let backwardBirdImage: Image = null
 let numberOfServers = 0
 let server_list: Sprite[] = []
 let player1 = sprites.create(img`
@@ -713,8 +697,44 @@ background()
 scene.cameraFollowSprite(player1)
 let customer_list = sprites.allOfKind(SpriteKind.customer)
 server_list = sprites.allOfKind(SpriteKind.server)
-numberOfServers = 0
+numberOfServers = 2
 let numberOfCustomers = 3
+let forwardBirdImage = img`
+. . . . . . . f f f f f . . . . 
+. . . . . . f d d 1 1 1 c . . . 
+. . . . . f d 1 f 1 1 1 1 f . . 
+. . . . . f 1 f f 1 f f 1 c . . 
+. . . . . f d f c 1 f f f f . . 
+. . . . . f 1 1 1 f f f f f f f 
+. . . . . . f 1 f f f f f f f . 
+f f f f . . f 1 1 1 1 1 c . . . 
+f 1 1 1 c c 1 1 e 1 1 e c . . . 
+f 1 1 f f f c 1 e 1 1 e 1 f . . 
+f 1 c f f f f 1 e e e e 1 1 f . 
+f 1 1 c 1 f f d 1 1 1 1 1 1 f . 
+f c 1 1 c c d 1 e 1 e 1 e 1 f . 
+. f 1 1 1 1 1 1 e 1 e 1 e 1 f . 
+. . f c 1 1 1 1 e e e e e c . . 
+. . . c c c c c c c c c c . . . 
+`
+backwardBirdImage = img`
+. . . . f f f f f . . . . . . . 
+. . . c 1 1 1 d d f . . . . . . 
+. . f 1 1 1 1 f 1 d f . . . . . 
+. . c 1 f f 1 f f 1 f . . . . . 
+. . f f f f 1 c f d f . . . . . 
+f f f f f f f 1 1 1 f . . . . . 
+. f f f f f f f 1 f . . . . . . 
+. . . c 1 1 1 1 1 f . . f f f f 
+. . . c e 1 1 e 1 1 c c 1 1 1 f 
+. . f 1 e 1 1 e 1 c f f f 1 1 f 
+. f 1 1 e e e e 1 f f f f c 1 f 
+. f 1 1 1 1 1 1 d f f 1 c 1 1 f 
+. f 1 e 1 e 1 e 1 d c c 1 1 c f 
+. f 1 e 1 e 1 e 1 1 1 1 1 1 f . 
+. . c e e e e e 1 1 1 1 c f . . 
+. . . c c c c c c c c c c . . . 
+`
 for (let index = 0; index <= numberOfServers; index++) {
     server_list.insertAt(index, sprites.create(img`
 . . . f f f c c c . . . . . 
@@ -737,24 +757,7 @@ f f f 4 4 c b c b 5 5 5 b f
     server_list[index].setPosition(120, 15 + index * 25)
 }
 for (let index2 = 0; index2 <= numberOfCustomers; index2++) {
-    customer_list.insertAt(index2, sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . b 5 5 b . . . 
-. . . . . . b b b b b b . . . . 
-. . . . . b b 5 5 5 5 5 b . . . 
-. b b b b b 5 5 5 5 5 5 5 b . . 
-. b d 5 b 5 5 5 5 5 5 5 5 b . . 
-. . b 5 5 b 5 d 1 f 5 d 4 f . . 
-. . b d 5 5 b 1 f f 5 4 4 c . . 
-b b d b 5 5 5 d f b 4 4 4 4 b . 
-b d d c d 5 5 b 5 4 4 4 4 4 4 b 
-c d d d c c b 5 5 5 5 5 5 5 b . 
-c b d d d d d 5 5 5 5 5 5 5 b . 
-. c d d d d d d 5 5 5 5 5 d b . 
-. . c b d d d d d 5 5 5 b b . . 
-. . . c c c c c c c c b b . . . 
-`, SpriteKind.customer))
+    customer_list.insertAt(index2, sprites.create(forwardBirdImage, SpriteKind.customer))
     customer_list[index2].setFlag(SpriteFlag.ShowPhysics, true)
     randomStart = Math.randomRange(0, numberOfServers)
     if (randomStart == 0) {
@@ -767,93 +770,6 @@ c b d d d d d 5 5 5 5 5 5 5 b .
 }
 leaving = true
 isServerInvisible = 0
-let projectile = sprites.createProjectileFromSide(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, 50, 100)
-let bird = [img`
-. . . . . . . f f f f f . . . . 
-. . . . . . f d d 1 1 1 c . . . 
-. . . . . f d 1 f 1 1 1 1 f . . 
-. . . . . f 1 f f 1 f f 1 c . . 
-. . . . . f d f c 1 f f f f . . 
-. . . . . f 1 1 1 f f f f f f f 
-. . . . . . f 1 f f f f f f f . 
-f f f f . . f 1 1 1 1 1 c . . . 
-f 1 1 1 c c 1 1 e 1 1 e c . . . 
-f 1 1 f f f c 1 e 1 1 e 1 f . . 
-f 1 c f f f f 1 e e e e 1 1 f . 
-f 1 1 c 1 f f d 1 1 1 1 1 1 f . 
-f c 1 1 c c d 1 e 1 e 1 e 1 f . 
-. f 1 1 1 1 1 1 e 1 e 1 e 1 f . 
-. . f c 1 1 1 1 e e e e e c . . 
-. . . c c c c c c c c c c . . . 
-`, img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f f f f f . . . . 
-. . . . . . f 1 1 1 1 1 c . . . 
-. . . . . . f 1 1 1 1 1 1 c . . 
-. c c c c c c 1 d 1 1 1 1 c . . 
-. c f f c 1 1 d 1 f 1 1 1 f . . 
-. . c f f c d 1 f f 1 f f d . . 
-. . c f f f c d f c f f f f c . 
-c d c f f f f 1 e f f f f f f c 
-c 1 1 c f f f d e e e e 1 1 c . 
-f 1 1 1 c d d 1 1 1 1 1 1 1 c . 
-f c 1 1 1 1 1 1 e 1 e 1 e 1 c . 
-. f 1 1 1 1 1 1 e 1 e 1 e 1 c . 
-. . f c 1 1 1 1 e e e e e c . . 
-. . . c c c c c c c c c c . . . 
-`, img`
-. . . . f f f f f . . . . . . . 
-. . . c 1 1 1 d d f . . . . . . 
-. . f 1 1 1 1 f 1 d f . . . . . 
-. . c 1 f f 1 f f 1 f . . . . . 
-. . f f f f 1 c f d f . . . . . 
-f f f f f f f 1 1 1 f . . . . . 
-. f f f f f f f 1 f . . . . . . 
-. . . c 1 1 1 1 1 f . . f f f f 
-. . . c e 1 1 e 1 1 c c 1 1 1 f 
-. . f 1 e 1 1 e 1 c f f f 1 1 f 
-. f 1 1 e e e e 1 f f f f c 1 f 
-. f 1 1 1 1 1 1 d f f 1 c 1 1 f 
-. f 1 e 1 e 1 e 1 d c c 1 1 c f 
-. f 1 e 1 e 1 e 1 1 1 1 1 1 f . 
-. . c e e e e e 1 1 1 1 c f . . 
-. . . c c c c c c c c c c . . . 
-`, img`
-. . . . . . . c c c c c . . . . 
-. . . . . . c d 1 1 1 1 c . . . 
-. . . . . c d 1 f 1 1 1 f . . . 
-. . . . . c 1 f f 1 f f c . . . 
-. . . . . c d f c f f f f c . . 
-. . . . . c c d 1 f f f f f f c 
-. . . . . . c 1 1 1 1 1 c . . . 
-. . . c c c 1 1 1 1 1 1 c . . . 
-. . c 1 1 1 1 1 e 1 1 e 1 f . . 
-. c 1 1 1 1 1 1 e 1 1 e 1 1 f . 
-c 1 1 1 c c c c e e e e 1 1 f . 
-f 1 1 c f f f d c 1 1 1 1 1 f . 
-f c c f f f d c e 1 e 1 e 1 f . 
-. c f f f f c 1 e 1 e 1 e 1 f . 
-c c f c c c 1 1 e e e e e c . . 
-. . . c c c c c c c c c c . . . 
-`]
 for (let value of customer_list) {
     sprites.setDataNumber(value, "timer", -1)
 }
@@ -864,24 +780,7 @@ forever(function () {
         customer_list[index3].setVelocity(50, 0)
         // respawns customer after they leave
         if (customer_list[index3].x < 0) {
-            customer_list[index3].setImage(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . b 5 5 b . . . 
-. . . . . . b b b b b b . . . . 
-. . . . . b b 5 5 5 5 5 b . . . 
-. b b b b b 5 5 5 5 5 5 5 b . . 
-. b d 5 b 5 5 5 5 5 5 5 5 b . . 
-. . b 5 5 b 5 d 1 f 5 d 4 f . . 
-. . b d 5 5 b 1 f f 5 4 4 c . . 
-b b d b 5 5 5 d f b 4 4 4 4 b . 
-b d d c d 5 5 b 5 4 4 4 4 4 4 b 
-c d d d c c b 5 5 5 5 5 5 5 b . 
-c b d d d d d 5 5 5 5 5 5 5 b . 
-. c d d d d d d 5 5 5 5 5 d b . 
-. . c b d d d d d 5 5 5 b b . . 
-. . . c c c c c c c c b b . . . 
-`)
+            customer_list[index3].setImage(forwardBirdImage)
             customer_list[index3].setFlag(SpriteFlag.Ghost, false)
             randomStart = Math.randomRange(0, numberOfServers)
             if (randomStart == 0) {
