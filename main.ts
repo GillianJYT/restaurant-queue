@@ -657,6 +657,8 @@ b b b b b b b b b b b b b b b b
 })
 let index3 = 0
 let randomTime = 0
+let mu_service_rate = 0
+let lambda_arrival_rate = 0
 let isServerInvisible = 0
 let leaving = false
 let randomStart = 0
@@ -773,6 +775,16 @@ isServerInvisible = 0
 for (let value of customer_list) {
     sprites.setDataNumber(value, "timer", -1)
 }
+// slide 12
+let lengthOfQueue = lambda_arrival_rate * lambda_arrival_rate / (mu_service_rate * (mu_service_rate - lambda_arrival_rate))
+// slide 13
+let averageWaitingTime = lengthOfQueue / lambda_arrival_rate + 1 / mu_service_rate
+// slide 14
+let initialProbability = 1 - lambda_arrival_rate / mu_service_rate
+// slide 15
+//
+// it's supposed to be to the power of 'n'
+let probabilityNumberQueue = initialProbability * (lambda_arrival_rate / mu_service_rate * 0)
 forever(function () {
     if (leaving) {
         randomTime = Math.randomRange(500, 2000)
