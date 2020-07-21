@@ -261,7 +261,8 @@ scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
     sprite.say("ordering...", 1000)
     sprite.setVelocity(0, 0)
     if (sprites.readDataNumber(sprite, "timer") <= 0) {
-        sprites.setDataNumber(sprite, "timer", 5)
+        mu_service_rate = 5
+        sprites.setDataNumber(sprite, "timer", mu_service_rate)
     }
 })
 scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
@@ -274,27 +275,6 @@ scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
     if (Math.floor(sprite.x / 16 - 1) == 2) {
         scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16 + 1), Math.floor(sprite.y / 16)), 2)
     }
-})
-// number of queues
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonPink, function (sprite, location) {
-    scene.setTile(3, img`
-b b b b b b b b b b b b b b b b 
-b c b b b b b b b b b b b b c b 
-b b b a 3 3 3 3 3 3 3 3 a b b b 
-b b a 3 3 3 3 3 3 3 3 3 3 a b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
-b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
-b b 3 1 3 3 3 3 3 3 3 3 1 3 b b 
-b b c 3 1 1 1 1 1 1 1 1 3 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
 })
 // number of servers
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
@@ -513,60 +493,6 @@ e e e e e e e e e e e e e c c f
 c c c c c c c c c c c c c c f . 
 f f f f f f f f f f f f f f . . 
 `, true)
-    scene.setTile(3, img`
-b b b b b b b b b b b b b b b b 
-b c b a 3 3 3 3 3 3 3 3 a b c b 
-b b a 3 3 3 3 3 3 3 3 3 3 a b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
-b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
-b b 3 1 3 3 3 3 3 3 3 3 1 3 b b 
-b b 3 3 1 1 1 1 1 1 1 1 3 3 b b 
-b b c 3 3 3 3 3 3 3 3 3 3 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
-    scene.setTile(4, img`
-b b b b b b b b b b b b b b b b 
-b c b e 4 4 4 4 4 4 4 4 e b c b 
-b b e 4 4 4 4 4 4 4 4 4 4 e b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b d 4 4 4 4 4 4 4 4 4 4 d b b 
-b b d 4 4 4 4 4 4 4 4 4 4 d b b 
-b b 4 d 4 4 4 4 4 4 4 4 d 4 b b 
-b b 4 4 d d d d d d d d 4 4 b b 
-b b c 4 4 4 4 4 4 4 4 4 4 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
-    scene.setTile(6, img`
-b b b b b b b b b b b b b b b b 
-b c b c 6 6 6 6 6 6 6 6 c b c b 
-b b c 6 6 6 6 6 6 6 6 6 6 c b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
-b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
-b b 6 9 6 6 6 6 6 6 6 6 9 6 b b 
-b b 6 6 9 9 9 9 9 9 9 9 6 6 b b 
-b b c 6 6 6 6 6 6 6 6 6 6 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
 }
 // customer finishes ordering and walks out
 scene.onOverlapTile(SpriteKind.customer, myTiles.tile14, function (sprite, location) {
@@ -578,85 +504,7 @@ scene.onOverlapTile(SpriteKind.customer, sprites.dungeon.stairEast, function (sp
     leaving = true
     sprite.setFlag(SpriteFlag.Ghost, true)
 })
-function resestButtons () {
-    scene.setTile(3, img`
-b b b b b b b b b b b b b b b b 
-b c b a 3 3 3 3 3 3 3 3 a b c b 
-b b a 3 3 3 3 3 3 3 3 3 3 a b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 3 3 3 3 3 3 3 3 3 3 3 3 b b 
-b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
-b b 1 3 3 3 3 3 3 3 3 3 3 1 b b 
-b b 3 1 3 3 3 3 3 3 3 3 1 3 b b 
-b b 3 3 1 1 1 1 1 1 1 1 3 3 b b 
-b b c 3 3 3 3 3 3 3 3 3 3 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
-    scene.setTile(4, img`
-b b b b b b b b b b b b b b b b 
-b c b e 4 4 4 4 4 4 4 4 e b c b 
-b b e 4 4 4 4 4 4 4 4 4 4 e b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b d 4 4 4 4 4 4 4 4 4 4 d b b 
-b b d 4 4 4 4 4 4 4 4 4 4 d b b 
-b b 4 d 4 4 4 4 4 4 4 4 d 4 b b 
-b b 4 4 d d d d d d d d 4 4 b b 
-b b c 4 4 4 4 4 4 4 4 4 4 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
-    scene.setTile(6, img`
-b b b b b b b b b b b b b b b b 
-b c b c 6 6 6 6 6 6 6 6 c b c b 
-b b c 6 6 6 6 6 6 6 6 6 6 c b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
-b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
-b b 6 9 6 6 6 6 6 6 6 6 9 6 b b 
-b b 6 6 9 9 9 9 9 9 9 9 6 6 b b 
-b b c 6 6 6 6 6 6 6 6 6 6 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
-}
-// queue style
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
-    scene.setTile(4, img`
-b b b b b b b b b b b b b b b b 
-b c b b b b b b b b b b b b c b 
-b b b e 4 4 4 4 4 4 4 4 e b b b 
-b b e 4 4 4 4 4 4 4 4 4 4 e b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b 4 4 4 4 4 4 4 4 4 4 4 4 b b 
-b b d 4 4 4 4 4 4 4 4 4 4 d b b 
-b b d 4 4 4 4 4 4 4 4 4 4 d b b 
-b b 4 d 4 4 4 4 4 4 4 4 d 4 b b 
-b b c 4 d d d d d d d d 4 c b b 
-b b b c c c c c c c c c c b b b 
-b c b b b b b b b b b b b b c b 
-b b b b b b b b b b b b b b b b 
-`, false)
-})
 let index3 = 0
-let randomTime = 0
 let mu_service_rate = 0
 let lambda_arrival_rate = 0
 let isServerInvisible = 0
@@ -686,9 +534,9 @@ let player1 = sprites.create(img`
 player1.setPosition(142, 63)
 controller.moveSprite(player1)
 scene.setTileMap(img`
-2 2 2 2 2 5 a 2 2 4 
-2 2 2 2 2 7 c 2 2 6 
-2 2 2 2 2 7 c 2 2 3 
+2 2 2 2 2 5 a 2 2 2 
+2 2 2 2 2 7 c 2 2 2 
+2 2 2 2 2 7 c 2 2 2 
 2 2 2 2 2 7 c 2 2 2 
 2 2 2 2 2 7 c 2 2 2 
 2 2 2 2 2 9 d 2 2 2 
@@ -699,7 +547,7 @@ background()
 scene.cameraFollowSprite(player1)
 let customer_list = sprites.allOfKind(SpriteKind.customer)
 server_list = sprites.allOfKind(SpriteKind.server)
-numberOfServers = 2
+numberOfServers = 0
 let numberOfCustomers = 3
 let forwardBirdImage = img`
 . . . . . . . f f f f f . . . . 
@@ -756,18 +604,18 @@ f f f 4 4 c b c b 5 5 5 b f
 . f f 3 b 3 b 3 b f f . . . 
 . . . f f b b f f . . . . . 
 `, SpriteKind.server))
-    server_list[index].setPosition(120, 15 + index * 25)
+    server_list[index].setPosition(120, 20 + index * 25)
 }
 for (let index2 = 0; index2 <= numberOfCustomers; index2++) {
     customer_list.insertAt(index2, sprites.create(forwardBirdImage, SpriteKind.customer))
     customer_list[index2].setFlag(SpriteFlag.ShowPhysics, true)
     randomStart = Math.randomRange(0, numberOfServers)
     if (randomStart == 0) {
-        customer_list[index2].setPosition(5, 23)
+        customer_list[index2].setPosition(5, 20)
     } else if (randomStart == 1) {
-        customer_list[index2].setPosition(5, 40)
+        customer_list[index2].setPosition(5, 45)
     } else {
-        customer_list[index2].setPosition(5, 65)
+        customer_list[index2].setPosition(5, 70)
     }
 }
 leaving = true
@@ -776,7 +624,7 @@ for (let value of customer_list) {
     sprites.setDataNumber(value, "timer", -1)
 }
 // slide 12
-let lengthOfQueue = lambda_arrival_rate * lambda_arrival_rate / (mu_service_rate * (mu_service_rate - lambda_arrival_rate))
+let lengthOfQueue = lambda_arrival_rate ** 2 / (mu_service_rate * (mu_service_rate - lambda_arrival_rate))
 // slide 13
 let averageWaitingTime = lengthOfQueue / lambda_arrival_rate + 1 / mu_service_rate
 // slide 14
@@ -784,11 +632,11 @@ let initialProbability = 1 - lambda_arrival_rate / mu_service_rate
 // slide 15
 //
 // it's supposed to be to the power of 'n'
-let probabilityNumberQueue = initialProbability * (lambda_arrival_rate / mu_service_rate * 0)
+let probabilityNumberQueue = initialProbability * (lambda_arrival_rate / mu_service_rate) ** 0
 forever(function () {
     if (leaving) {
-        randomTime = Math.randomRange(500, 2000)
-        pause(2000)
+        lambda_arrival_rate = 2
+        pause(lambda_arrival_rate * 1000)
         customer_list[index3].setVelocity(50, 0)
         // respawns customer after they leave
         if (customer_list[index3].x < 0) {
@@ -796,12 +644,12 @@ forever(function () {
             customer_list[index3].setFlag(SpriteFlag.Ghost, false)
             randomStart = Math.randomRange(0, numberOfServers)
             if (randomStart == 0) {
-                customer_list[index3].setPosition(5, 23)
+                customer_list[index3].setPosition(5, 20)
                 customer_list[index3].setVelocity(0, 0)
             } else if (randomStart == 1) {
-                customer_list[index3].setPosition(5, 40)
+                customer_list[index3].setPosition(5, 45)
             } else {
-                customer_list[index3].setPosition(5, 65)
+                customer_list[index3].setPosition(5, 70)
             }
         }
         if (index3 < numberOfCustomers) {
@@ -820,5 +668,10 @@ forever(function () {
         }
     }
     pause(1)
-    resestButtons()
+    // slide 12
+    lengthOfQueue = lambda_arrival_rate ** 2 / (mu_service_rate * (mu_service_rate - lambda_arrival_rate))
+    if (lengthOfQueue > 1) {
+        game.showLongText("The restaurant couldn't keep up with the demand.", DialogLayout.Center)
+        game.reset()
+    }
 })
