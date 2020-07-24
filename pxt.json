@@ -1,19 +1,28 @@
 {
     "name": "Restaurant queue",
+    "description": "",
     "dependencies": {
         "device": "*",
         "color-coded-tilemap": "*",
         "animation": "*",
-        "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.0.5"
+        "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.0.6"
     },
-    "description": "",
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
     ],
-    "preferredEditor": "blocksprj",
     "testFiles": [
         "test.ts"
-    ]
+    ],
+    "targetVersions": {
+        "target": "1.0.14",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "blocksprj"
 }
