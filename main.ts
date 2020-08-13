@@ -6,7 +6,8 @@ namespace SpriteKind {
     export const server = SpriteKind.create()
 }
 function setParameters () {
-	
+    lambda_arrival_rate = 2
+    mu_service_rate = 5
 }
 // number of servers
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
@@ -46,8 +47,8 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (spr
 function background () {
     scene.setTile(15, img`
         d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
-        1 d d d d d d d d d d d d d d b 
-        1 d d d d d d d d d d d d d d b 
+        1 3 3 3 3 3 3 3 d d d d d d d b 
+        1 3 3 3 3 3 3 3 d d d d d d d b 
         1 d d d d d d d d d d d d d d b 
         1 d d d d d d d d d d d d d d b 
         1 d d d d d d d d d d d d d d b 
@@ -249,7 +250,7 @@ scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
     if (sprite.vx != 0) {
         scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.floor(sprite.y / 16)), 15)
         sprite.setVelocity(0, 0)
-        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16 + 1), Math.floor(sprite.y / 16)), 2)
+        scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16) + 1, Math.floor(sprite.y / 16)), 2)
     }
     scene.setTileAt(scene.getTile(0, 1), 2)
 })
@@ -267,10 +268,9 @@ scene.onOverlapTile(SpriteKind.customer, sprites.dungeon.stairEast, function (sp
 scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
     scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.floor(sprite.y / 16)), 15)
     // need to pause for a few seconds
-    sprite.say("ordering...", 1000)
+    sprite.say("ordering...", mu_service_rate * 1000)
     sprite.setVelocity(0, 0)
-    if (sprites.readDataNumber(sprite, "timer") <= 0) {
-        mu_service_rate = 5
+    if (sprites.readDataNumber(sprite, "timer") < 0) {
         sprites.setDataNumber(sprite, "timer", mu_service_rate)
     }
 })
@@ -280,8 +280,8 @@ scene.onOverlapTile(SpriteKind.customer, myTiles.tile1, function (sprite, locati
 })
 let lengthOfQueue = 0
 let index3 = 0
-let lambda_arrival_rate = 0
 let mu_service_rate = 0
+let lambda_arrival_rate = 0
 let isServerInvisible = 0
 let leaving = false
 let randomStart = 0
@@ -299,6 +299,7 @@ scene.setTileMap(img`
     e 6 8 8 8 2 2 2 2 2 
     `)
 background()
+setParameters()
 let customer_list = sprites.allOfKind(SpriteKind.customer)
 server_list = sprites.allOfKind(SpriteKind.server)
 numberOfServers = 0
@@ -379,7 +380,6 @@ for (let value of customer_list) {
 }
 forever(function () {
     if (leaving) {
-        lambda_arrival_rate = 2
         pause(lambda_arrival_rate * 1000)
         customer_list[index3].setVelocity(50, 0)
         // respawns customer after they leave
@@ -402,6 +402,7 @@ forever(function () {
         }
     }
     for (let value2 of customer_list) {
+        console.log(sprites.readDataNumber(value2, "timer"))
         if (sprites.readDataNumber(value2, "timer") == 0) {
             value2.setVelocity(0, 50)
             scene.setTileAt(scene.getTile(Math.floor(value2.x / 16), Math.floor(value2.y / 16)), 2)
