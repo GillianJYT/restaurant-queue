@@ -5,6 +5,9 @@ namespace SpriteKind {
     export const buttonPink = SpriteKind.create()
     export const server = SpriteKind.create()
 }
+function setParameters () {
+	
+}
 // number of servers
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
     scene.setTile(6, img`
@@ -275,35 +278,16 @@ scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
 scene.onOverlapTile(SpriteKind.customer, myTiles.tile1, function (sprite, location) {
     sprite.setVelocity(-50, 0)
 })
+let lengthOfQueue = 0
 let index3 = 0
-let mu_service_rate = 0
 let lambda_arrival_rate = 0
+let mu_service_rate = 0
 let isServerInvisible = 0
 let leaving = false
 let randomStart = 0
 let backwardBirdImage: Image = null
 let numberOfServers = 0
 let server_list: Sprite[] = []
-let player1 = sprites.create(img`
-    . . . . . . f f f f . . . . . . 
-    . . . . f f f 2 2 f f f . . . . 
-    . . . f f f 2 2 2 2 f f f . . . 
-    . . f f f e e e e e e f f f . . 
-    . . f f e 2 2 2 2 2 2 e e f . . 
-    . . f e 2 f f f f f f 2 e f . . 
-    . . f f f f e e e e f f f f . . 
-    . f f e f b f 4 4 f b f e f f . 
-    . f e e 4 1 f d d f 1 4 e e f . 
-    . . f e e d d d d d d e e f . . 
-    . . . f e e 4 4 4 4 e e f . . . 
-    . . e 4 f 2 2 2 2 2 2 f 4 e . . 
-    . . 4 d f 2 2 2 2 2 2 f d 4 . . 
-    . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
-    . . . . . f f f f f f . . . . . 
-    . . . . . f f . . f f . . . . . 
-    `, SpriteKind.Player)
-player1.setPosition(142, 63)
-controller.moveSprite(player1)
 scene.setTileMap(img`
     2 2 2 2 2 5 a 2 2 2 
     2 2 2 2 2 7 c 2 2 2 
@@ -315,7 +299,6 @@ scene.setTileMap(img`
     e 6 8 8 8 2 2 2 2 2 
     `)
 background()
-scene.cameraFollowSprite(player1)
 let customer_list = sprites.allOfKind(SpriteKind.customer)
 server_list = sprites.allOfKind(SpriteKind.server)
 numberOfServers = 0
@@ -394,15 +377,6 @@ isServerInvisible = 0
 for (let value of customer_list) {
     sprites.setDataNumber(value, "timer", -1)
 }
-// slide 12
-let lengthOfQueue = lambda_arrival_rate ** 2 / (mu_service_rate * (mu_service_rate - lambda_arrival_rate))
-// slide 13
-let averageWaitingTime = lengthOfQueue / lambda_arrival_rate + 1 / mu_service_rate
-// slide 14
-let initialProbability = 1 - lambda_arrival_rate / mu_service_rate
-// slide 15
-// it's supposed to be to the power of 'n'
-let probabilityNumberQueue = initialProbability * (lambda_arrival_rate / mu_service_rate) ** 0
 forever(function () {
     if (leaving) {
         lambda_arrival_rate = 2
