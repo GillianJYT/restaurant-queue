@@ -173,6 +173,24 @@ function background () {
         f c e 1 e e e e e e e e e e e e 
         f c e 1 e e e e e e e e e e e e 
         `, true)
+    scene.setTile(3, img`
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        f c e 1 e e e e e e e e e e e e 
+        `, true)
     scene.setTile(9, img`
         f c e 1 e e e e e e e e e e e e 
         f c e 1 e e e e e e e e e e e e 
@@ -258,11 +276,10 @@ scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
 scene.onOverlapTile(SpriteKind.customer, myTiles.tile14, function (sprite, location) {
     sprite.setVelocity(-50, 50)
     sprite.setImage(backwardBirdImage)
-    leaving = false
 })
 scene.onOverlapTile(SpriteKind.customer, sprites.dungeon.stairEast, function (sprite, location) {
-    leaving = true
     sprite.setFlag(SpriteFlag.Ghost, true)
+    sprites.setDataNumber(sprite, "lambdaTimer", lambda_arrival_rate)
 })
 // when customer arrives at the counter
 scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
@@ -270,8 +287,8 @@ scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
     // need to pause for a few seconds
     sprite.say("ordering...", mu_service_rate * 1000)
     sprite.setVelocity(0, 0)
-    if (sprites.readDataNumber(sprite, "timer") < 0) {
-        sprites.setDataNumber(sprite, "timer", mu_service_rate)
+    if (sprites.readDataNumber(sprite, "muTimer") < 0) {
+        sprites.setDataNumber(sprite, "muTimer", mu_service_rate)
     }
 })
 // customer finishes ordering and walks out
@@ -283,7 +300,6 @@ let index3 = 0
 let mu_service_rate = 0
 let lambda_arrival_rate = 0
 let isServerInvisible = 0
-let leaving = false
 let randomStart = 0
 let backwardBirdImage: Image = null
 let numberOfServers = 0
@@ -291,9 +307,9 @@ let server_list: Sprite[] = []
 scene.setTileMap(img`
     2 2 2 2 2 5 a 2 2 2 
     2 2 2 2 2 7 c 2 2 2 
-    2 2 2 2 2 7 c 2 2 2 
-    2 2 2 2 2 7 c 2 2 2 
-    2 2 2 2 2 7 c 2 2 2 
+    2 2 2 2 2 3 c 2 2 2 
+    2 2 2 2 2 3 c 2 2 2 
+    2 2 2 2 2 3 c 2 2 2 
     2 2 2 2 2 9 d 2 2 2 
     2 2 2 2 2 2 2 2 2 2 
     e 6 8 8 8 2 2 2 2 2 
@@ -363,7 +379,6 @@ for (let index = 0; index <= numberOfServers; index++) {
 }
 for (let index2 = 0; index2 <= numberOfCustomers; index2++) {
     customer_list.insertAt(index2, sprites.create(forwardBirdImage, SpriteKind.customer))
-    customer_list[index2].setFlag(SpriteFlag.ShowPhysics, true)
     randomStart = randint(0, numberOfServers)
     if (randomStart == 0) {
         customer_list[index2].setPosition(5, 20)
@@ -373,45 +388,44 @@ for (let index2 = 0; index2 <= numberOfCustomers; index2++) {
         customer_list[index2].setPosition(5, 70)
     }
 }
-leaving = true
 isServerInvisible = 0
+let index = 0
 for (let value of customer_list) {
-    sprites.setDataNumber(value, "timer", -1)
+    sprites.setDataNumber(value, "muTimer", -1)
+    sprites.setDataNumber(value, "lambdaTimer", lambda_arrival_rate + index * lambda_arrival_rate)
+    index += 1
 }
 forever(function () {
-    if (leaving) {
-        pause(lambda_arrival_rate * 1000)
-        customer_list[index3].setVelocity(50, 0)
-        // respawns customer after they leave
-        if (customer_list[index3].x < 0) {
-            customer_list[index3].setImage(forwardBirdImage)
-            customer_list[index3].setFlag(SpriteFlag.Ghost, false)
-            randomStart = randint(0, numberOfServers)
-            if (randomStart == 0) {
-                customer_list[index3].setPosition(0, 20)
-            } else if (randomStart == 1) {
-                customer_list[index3].setPosition(5, 45)
+    pause(1000)
+    for (let value2 of customer_list) {
+        if (sprites.readDataNumber(value2, "lambdaTimer") == 0) {
+            customer_list[index3].setVelocity(50, 0)
+            // respawns customer after they leave
+            if (customer_list[index3].x < 0) {
+                customer_list[index3].setImage(forwardBirdImage)
+                customer_list[index3].setFlag(SpriteFlag.Ghost, false)
+                randomStart = randint(0, numberOfServers)
+                if (randomStart == 0) {
+                    customer_list[index3].setPosition(0, 20)
+                } else if (randomStart == 1) {
+                    customer_list[index3].setPosition(5, 45)
+                } else {
+                    customer_list[index3].setPosition(5, 70)
+                }
+            }
+            if (index3 < numberOfCustomers) {
+                index3 += 1
             } else {
-                customer_list[index3].setPosition(5, 70)
+                index3 = 0
             }
         }
-        if (index3 < numberOfCustomers) {
-            index3 += 1
-        } else {
-            index3 = 0
-        }
-    }
-    for (let value2 of customer_list) {
-        console.log(sprites.readDataNumber(value2, "timer"))
-        if (sprites.readDataNumber(value2, "timer") == 0) {
+        if (sprites.readDataNumber(value2, "muTimer") == 0) {
             value2.setVelocity(0, 50)
             scene.setTileAt(scene.getTile(Math.floor(value2.x / 16), Math.floor(value2.y / 16)), 2)
-            sprites.changeDataNumberBy(value2, "timer", -1)
-        } else {
-            sprites.changeDataNumberBy(value2, "timer", -1)
         }
+        sprites.changeDataNumberBy(value2, "muTimer", -1)
+        sprites.changeDataNumberBy(value2, "lambdaTimer", -1)
     }
-    pause(1)
     // slide 12
     lengthOfQueue = lambda_arrival_rate ** 2 / (mu_service_rate * (mu_service_rate - lambda_arrival_rate))
     if (lengthOfQueue > 1) {
