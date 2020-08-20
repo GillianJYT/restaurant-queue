@@ -9,46 +9,11 @@ function setParameters () {
     lambda_arrival_rate = 2
     mu_service_rate = 5
 }
-// number of servers
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonTeal, function (sprite, location) {
-    scene.setTile(6, img`
-        b b b b b b b b b b b b b b b b 
-        b c b b b b b b b b b b b b c b 
-        b b b c 6 6 6 6 6 6 6 6 c b b b 
-        b b c 6 6 6 6 6 6 6 6 6 6 c b b 
-        b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-        b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-        b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-        b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-        b b 6 6 6 6 6 6 6 6 6 6 6 6 b b 
-        b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
-        b b 9 6 6 6 6 6 6 6 6 6 6 9 b b 
-        b b 6 9 6 6 6 6 6 6 6 6 9 6 b b 
-        b b c 6 9 9 9 9 9 9 9 9 6 c b b 
-        b b b c c c c c c c c c c b b b 
-        b c b b b b b b b b b b b b c b 
-        b b b b b b b b b b b b b b b b 
-        `, false)
-    if (isServerInvisible == 0) {
-        isServerInvisible = 1
-        numberOfServers = 1
-        server_list[2].setFlag(SpriteFlag.Invisible, true)
-    } else if (isServerInvisible == 1) {
-        isServerInvisible = 2
-        numberOfServers = 0
-        server_list[1].setFlag(SpriteFlag.Invisible, true)
-    } else {
-        isServerInvisible = 0
-        numberOfServers = 2
-        server_list[1].setFlag(SpriteFlag.Invisible, false)
-        server_list[2].setFlag(SpriteFlag.Invisible, false)
-    }
-})
 function background () {
     scene.setTile(15, img`
         d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
-        1 3 3 3 3 3 3 3 d d d d d d d b 
-        1 3 3 3 3 3 3 3 d d d d d d d b 
+        1 d d d d d d d d d d d d d d b 
+        1 d d d d d d d d d d d d d d b 
         1 d d d d d d d d d d d d d d b 
         1 d d d d d d d d d d d d d d b 
         1 d d d d d d d d d d d d d d b 
@@ -282,12 +247,9 @@ let lengthOfQueue = 0
 let index3 = 0
 let mu_service_rate = 0
 let lambda_arrival_rate = 0
-let isServerInvisible = 0
 let leaving = false
 let randomStart = 0
 let backwardBirdImage: Image = null
-let numberOfServers = 0
-let server_list: Sprite[] = []
 scene.setTileMap(img`
     2 2 2 2 2 5 a 2 2 2 
     2 2 2 2 2 7 c 2 2 2 
@@ -301,8 +263,8 @@ scene.setTileMap(img`
 background()
 setParameters()
 let customer_list = sprites.allOfKind(SpriteKind.customer)
-server_list = sprites.allOfKind(SpriteKind.server)
-numberOfServers = 0
+let server_list = sprites.allOfKind(SpriteKind.server)
+let numberOfServers = 0
 let numberOfCustomers = 3
 let forwardBirdImage = img`
     . . . . . . . f f f f f . . . . 
@@ -374,7 +336,7 @@ for (let index2 = 0; index2 <= numberOfCustomers; index2++) {
     }
 }
 leaving = true
-isServerInvisible = 0
+let isServerInvisible = 0
 for (let value of customer_list) {
     sprites.setDataNumber(value, "timer", -1)
 }
@@ -402,7 +364,6 @@ forever(function () {
         }
     }
     for (let value2 of customer_list) {
-        console.log(sprites.readDataNumber(value2, "timer"))
         if (sprites.readDataNumber(value2, "timer") == 0) {
             value2.setVelocity(0, 50)
             scene.setTileAt(scene.getTile(Math.floor(value2.x / 16), Math.floor(value2.y / 16)), 2)
