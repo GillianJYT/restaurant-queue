@@ -7,7 +7,7 @@ namespace SpriteKind {
 }
 function setParameters () {
     lambda_arrival_rate = 2
-    mu_service_rate = 5
+    mu_service_rate = 10
 }
 function background () {
     scene.setTile(15, img`
@@ -223,17 +223,15 @@ scene.onHitTile(SpriteKind.customer, 15, function (sprite) {
 scene.onOverlapTile(SpriteKind.customer, myTiles.tile14, function (sprite, location) {
     sprite.setVelocity(-50, 50)
     sprite.setImage(backwardBirdImage)
-    leaving = false
 })
 scene.onOverlapTile(SpriteKind.customer, sprites.dungeon.stairEast, function (sprite, location) {
-    leaving = true
     sprite.setFlag(SpriteFlag.Ghost, true)
 })
 // when customer arrives at the counter
 scene.onHitTile(SpriteKind.customer, 7, function (sprite) {
     scene.setTileAt(scene.getTile(Math.floor(sprite.x / 16), Math.floor(sprite.y / 16)), 15)
     // need to pause for a few seconds
-    sprite.say("ordering...", mu_service_rate * 1000)
+    sprite.say("ordering...", 2000)
     sprite.setVelocity(0, 0)
     if (sprites.readDataNumber(sprite, "timer") < 0) {
         sprites.setDataNumber(sprite, "timer", mu_service_rate)
@@ -245,11 +243,10 @@ scene.onOverlapTile(SpriteKind.customer, myTiles.tile1, function (sprite, locati
 })
 let lengthOfQueue = 0
 let index3 = 0
-let mu_service_rate = 0
-let lambda_arrival_rate = 0
-let leaving = false
 let randomStart = 0
 let backwardBirdImage: Image = null
+let lambda_arrival_rate = 0
+let mu_service_rate = 0
 scene.setTileMap(img`
     2 2 2 2 2 5 a 2 2 2 
     2 2 2 2 2 7 c 2 2 2 
@@ -262,6 +259,7 @@ scene.setTileMap(img`
     `)
 background()
 setParameters()
+mu_service_rate = mu_service_rate / lambda_arrival_rate
 let customer_list = sprites.allOfKind(SpriteKind.customer)
 let server_list = sprites.allOfKind(SpriteKind.server)
 let numberOfServers = 0
@@ -325,7 +323,6 @@ for (let index = 0; index <= numberOfServers; index++) {
 }
 for (let index2 = 0; index2 <= numberOfCustomers; index2++) {
     customer_list.insertAt(index2, sprites.create(forwardBirdImage, SpriteKind.customer))
-    customer_list[index2].setFlag(SpriteFlag.ShowPhysics, true)
     randomStart = randint(0, numberOfServers)
     if (randomStart == 0) {
         customer_list[index2].setPosition(5, 20)
@@ -335,33 +332,30 @@ for (let index2 = 0; index2 <= numberOfCustomers; index2++) {
         customer_list[index2].setPosition(5, 70)
     }
 }
-leaving = true
 let isServerInvisible = 0
 for (let value of customer_list) {
     sprites.setDataNumber(value, "timer", -1)
 }
 forever(function () {
-    if (leaving) {
-        pause(lambda_arrival_rate * 1000)
-        customer_list[index3].setVelocity(50, 0)
-        // respawns customer after they leave
-        if (customer_list[index3].x < 0) {
-            customer_list[index3].setImage(forwardBirdImage)
-            customer_list[index3].setFlag(SpriteFlag.Ghost, false)
-            randomStart = randint(0, numberOfServers)
-            if (randomStart == 0) {
-                customer_list[index3].setPosition(0, 20)
-            } else if (randomStart == 1) {
-                customer_list[index3].setPosition(5, 45)
-            } else {
-                customer_list[index3].setPosition(5, 70)
-            }
-        }
-        if (index3 < numberOfCustomers) {
-            index3 += 1
+    pause(lambda_arrival_rate * 1000)
+    customer_list[index3].setVelocity(50, 0)
+    // respawns customer after they leave
+    if (customer_list[index3].x < 0) {
+        customer_list[index3].setImage(forwardBirdImage)
+        customer_list[index3].setFlag(SpriteFlag.Ghost, false)
+        randomStart = randint(0, numberOfServers)
+        if (randomStart == 0) {
+            customer_list[index3].setPosition(0, 20)
+        } else if (randomStart == 1) {
+            customer_list[index3].setPosition(5, 45)
         } else {
-            index3 = 0
+            customer_list[index3].setPosition(5, 70)
         }
+    }
+    if (index3 < numberOfCustomers) {
+        index3 += 1
+    } else {
+        index3 = 0
     }
     for (let value2 of customer_list) {
         if (sprites.readDataNumber(value2, "timer") == 0) {
@@ -372,7 +366,6 @@ forever(function () {
             sprites.changeDataNumberBy(value2, "timer", -1)
         }
     }
-    pause(1)
     // slide 12
     lengthOfQueue = lambda_arrival_rate ** 2 / (mu_service_rate * (mu_service_rate - lambda_arrival_rate))
     if (lengthOfQueue > 1) {
